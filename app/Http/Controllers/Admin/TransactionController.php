@@ -46,11 +46,10 @@ class TransactionController extends Controller
     public function store(TransactionRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
 
         //memanggil MODEL
         Transaction::create($data);
-        return redirect()->route('travel-package.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -96,13 +95,11 @@ class TransactionController extends Controller
     public function update(TransactionRequest $request, $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
-
-        
+               
         $item = Transaction::findOrfail($id);
         $item->update($data);
 
-        return redirect()->route('travel-package.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -116,6 +113,6 @@ class TransactionController extends Controller
         $item = Transaction::findOrfail($id);
         $item->delete();
 
-        return redirect()->route('travel-package.index');
+        return redirect()->route('transaction.index');
     }
 }
